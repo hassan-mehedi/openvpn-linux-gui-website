@@ -1,0 +1,157 @@
+---
+import { Image } from 'astro:assets';
+
+import s01 from '../assets/screenshots/01-profiles-empty.png';
+import s02 from '../assets/screenshots/02-import-profile-file.png';
+import s03 from '../assets/screenshots/03-import-profile-form.png';
+import s04 from '../assets/screenshots/04-connected.png';
+import s05 from '../assets/screenshots/05-connection-stats.png';
+import s06 from '../assets/screenshots/06-disconnect-confirm.png';
+import s07 from '../assets/screenshots/07-profile-list.png';
+import s08 from '../assets/screenshots/08-settings-connection.png';
+import s09 from '../assets/screenshots/09-settings-presentation.png';
+import s10 from '../assets/screenshots/10-add-proxy.png';
+import s11 from '../assets/screenshots/11-profile-details-light.png';
+import s12 from '../assets/screenshots/12-profile-details-dark.png';
+
+const screenshots = [
+  { src: s01, alt: 'Profiles view – empty state' },
+  { src: s02, alt: 'Import profile – file upload' },
+  { src: s03, alt: 'Import profile – review form' },
+  { src: s04, alt: 'Active connection with stats' },
+  { src: s05, alt: 'Connection stats and throughput graph' },
+  { src: s06, alt: 'Disconnect confirmation dialog' },
+  { src: s07, alt: 'Profile list – disconnected' },
+  { src: s08, alt: 'Settings – connection defaults' },
+  { src: s09, alt: 'Settings – presentation options' },
+  { src: s10, alt: 'Add proxy dialog' },
+  { src: s11, alt: 'Profile details – light mode' },
+  { src: s12, alt: 'Profile details – dark mode' },
+];
+---
+
+<section class="gallery">
+  <div class="gallery__inner">
+    <h2 class="gallery__heading">See it in action</h2>
+    <div class="gallery__grid">
+      {screenshots.map((s, i) => (
+        <button
+          class="gallery__thumb"
+          data-index={i}
+          aria-label={`View full size: ${s.alt}`}
+        >
+          <Image
+            src={s.src}
+            alt={s.alt}
+            width={240}
+            quality={80}
+          />
+        </button>
+      ))}
+    </div>
+  </div>
+</section>
+
+<dialog id="gallery-dialog" class="gallery-dialog">
+  <button id="gallery-dialog-close" class="gallery-dialog__close" aria-label="Close">✕</button>
+  <img id="gallery-dialog-img" src="" alt="" class="gallery-dialog__img" />
+</dialog>
+
+<script>
+  const dialog = document.getElementById('gallery-dialog') as HTMLDialogElement;
+  const dialogImg = document.getElementById('gallery-dialog-img') as HTMLImageElement;
+  const closeBtn = document.getElementById('gallery-dialog-close');
+
+  document.querySelectorAll<HTMLButtonElement>('.gallery__thumb').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const img = btn.querySelector('img')!;
+      dialogImg.src = img.src;
+      dialogImg.alt = img.alt;
+      dialog.showModal();
+    });
+  });
+
+  closeBtn?.addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', (e) => {
+    if (e.target === dialog) dialog.close();
+  });
+</script>
+
+<style>
+  .gallery {
+    padding: 5rem 2rem;
+    background: #ffffff;
+  }
+  .gallery__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .gallery__heading {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1B3A5C;
+    margin: 0 0 3rem;
+  }
+  .gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  .gallery__thumb {
+    background: none;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 0;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .gallery__thumb:hover {
+    border-color: #F08220;
+    transform: scale(1.02);
+  }
+  .gallery__thumb img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  .gallery-dialog {
+    border: none;
+    border-radius: 12px;
+    padding: 0;
+    background: rgba(0,0,0,0.92);
+    max-width: 90vw;
+    max-height: 90vh;
+  }
+  .gallery-dialog::backdrop {
+    background: rgba(0,0,0,0.75);
+  }
+  .gallery-dialog__img {
+    display: block;
+    max-width: 85vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+  .gallery-dialog__close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: white;
+    font-size: 1.25rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    cursor: pointer;
+    line-height: 1;
+  }
+  @media (max-width: 768px) {
+    .gallery__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

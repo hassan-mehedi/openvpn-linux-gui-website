@@ -1,0 +1,56 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer__inner">
+    <p class="footer__copy">
+      &copy; {year} Mehedi Hassan. Licensed under
+      <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">
+        CC BY-NC 4.0
+      </a>.
+    </p>
+    <nav class="footer__links">
+      <a href="https://github.com/hassan-mehedi/openvpn-linux-client-gui" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/hassan-mehedi/openvpn-linux-client-gui/releases" target="_blank" rel="noopener">Releases</a>
+      <a href="https://github.com/hassan-mehedi/openvpn-linux-client-gui/issues" target="_blank" rel="noopener">Issues</a>
+      <a href="/docs/reference/known-limitations/">Known Limitations</a>
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: #1B3A5C;
+    color: rgba(255,255,255,0.7);
+    padding: 2.5rem 2rem;
+  }
+  .footer__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer__copy {
+    margin: 0;
+    font-size: 0.875rem;
+  }
+  .footer__copy a {
+    color: #F08220;
+    text-decoration: none;
+  }
+  .footer__links {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .footer__links a {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .footer__links a:hover { color: #F08220; }
+</style>

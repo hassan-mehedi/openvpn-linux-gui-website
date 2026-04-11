@@ -1,0 +1,110 @@
+---
+const features = [
+  {
+    icon: '📁',
+    title: 'Profile Management',
+    desc: 'Import from .ovpn file, HTTPS URL, or openvpn:// token URL. Search, rename, and delete profiles.',
+  },
+  {
+    icon: '🔗',
+    title: 'Connection Lifecycle',
+    desc: 'Connect, disconnect, pause, resume, and restart with a formal state machine. Credential and MFA prompts handled automatically.',
+  },
+  {
+    icon: '📊',
+    title: 'Live Telemetry',
+    desc: 'Real-time bytes transferred, packet counts, latency, and a live throughput rate graph per active session.',
+  },
+  {
+    icon: '🔍',
+    title: 'Diagnostics',
+    desc: 'Service reachability checks, guided recovery workflows, and one-click redacted support bundle export.',
+  },
+  {
+    icon: '🌐',
+    title: 'Proxy Management',
+    desc: 'Save and manage HTTP/SOCKS proxies, assign them per profile, or override at connect time.',
+  },
+  {
+    icon: '⌨️',
+    title: 'Companion CLI',
+    desc: 'Full automation surface for profiles, sessions, settings, proxies, and diagnostics. JSON output supported.',
+  },
+  {
+    icon: '🖥️',
+    title: 'Desktop Integration',
+    desc: '.ovpn file association, openvpn:// URI handler, StatusNotifier system tray, XDG autostart, and AppStream metadata.',
+  },
+  {
+    icon: '⚙️',
+    title: 'System Mode',
+    desc: 'Optional systemd user service and polkit policy for boot-time, unattended VPN connections.',
+  },
+];
+---
+
+<section class="features">
+  <div class="features__inner">
+    <h2 class="features__heading">Everything you need</h2>
+    <div class="features__grid">
+      {features.map(f => (
+        <div class="feature-card">
+          <span class="feature-card__icon" aria-hidden="true">{f.icon}</span>
+          <h3 class="feature-card__title">{f.title}</h3>
+          <p class="feature-card__desc">{f.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .features {
+    background: #F0F2F5;
+    padding: 5rem 2rem;
+  }
+  .features__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .features__heading {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1B3A5C;
+    margin: 0 0 3rem;
+  }
+  .features__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .feature-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.75rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .feature-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    transform: translateY(-2px);
+  }
+  .feature-card__icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+  .feature-card__title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #1B3A5C;
+    margin: 0 0 0.5rem;
+  }
+  .feature-card__desc {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #555;
+    margin: 0;
+  }
+</style>

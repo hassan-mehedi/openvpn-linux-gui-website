@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --sl-font: 'Inter', system-ui, sans-serif;
+  --sl-color-accent-low: #fce5c5;
+  --sl-color-accent: #F08220;
+  --sl-color-accent-high: #d06e18;
+  --sl-color-bg-nav: #1B3A5C;
+  --sl-color-bg-sidebar: #f8f9fb;
+}
+
+:root[data-theme='dark'] {
+  --sl-color-accent-low: #3d2000;
+  --sl-color-accent: #F08220;
+  --sl-color-accent-high: #fca555;
+  --sl-color-bg-nav: #1B3A5C;
+  --sl-color-bg: #1A1A2E;
+  --sl-color-bg-sidebar: #1f2235;
+}
+
+/* White text in the nav for contrast against navy */
+.site-title, .site-title * {
+  color: #ffffff !important;
+}

@@ -1,0 +1,148 @@
+---
+const tabs = [
+  {
+    id: 'fedora',
+    label: 'Fedora',
+    steps: [
+      {
+        comment: '# Install system dependencies',
+        cmd: 'sudo dnf install python3-gobject gtk4 libadwaita python3-dbus libsecret openvpn3-client',
+      },
+      {
+        comment: '# Install the GUI',
+        cmd: 'curl -fsSL https://raw.githubusercontent.com/hassan-mehedi/openvpn-linux-client-gui/main/install.sh | bash',
+      },
+    ],
+  },
+  {
+    id: 'ubuntu',
+    label: 'Ubuntu / Debian',
+    steps: [
+      {
+        comment: '# Install system dependencies',
+        cmd: 'sudo apt install gir1.2-gtk-4.0 gir1.2-adw-1 gir1.2-secret-1 python3-gi python3-dbus openvpn3',
+      },
+      {
+        comment: '# Install the GUI',
+        cmd: 'curl -fsSL https://raw.githubusercontent.com/hassan-mehedi/openvpn-linux-client-gui/main/install.sh | bash',
+      },
+    ],
+  },
+  {
+    id: 'source',
+    label: 'From Source',
+    steps: [
+      {
+        comment: '# Clone and install dev dependencies',
+        cmd: 'git clone https://github.com/hassan-mehedi/openvpn-linux-client-gui.git\ncd openvpn3-client-linux\nuv sync --dev',
+      },
+    ],
+  },
+];
+---
+
+<section class="install">
+  <div class="install__inner">
+    <h2 class="install__heading">Install</h2>
+    <div class="install__tabs" role="tablist">
+      {tabs.map((tab, i) => (
+        <button
+          role="tab"
+          class={`install__tab ${i === 0 ? 'install__tab--active' : ''}`}
+          data-tab={tab.id}
+          aria-selected={i === 0 ? 'true' : 'false'}
+        >
+          {tab.label}
+        </button>
+      ))}
+    </div>
+    {tabs.map((tab, i) => (
+      <div
+        class={`install__panel ${i === 0 ? 'install__panel--active' : ''}`}
+        data-panel={tab.id}
+        role="tabpanel"
+      >
+        {tab.steps.map(step => (
+          <pre class="install__code"><code>{step.comment + '\n' + step.cmd}</code></pre>
+        ))}
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.install__tab');
+  const panels = document.querySelectorAll<HTMLElement>('.install__panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      tabs.forEach(t => {
+        t.classList.remove('install__tab--active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      panels.forEach(p => p.classList.remove('install__panel--active'));
+      tab.classList.add('install__tab--active');
+      tab.setAttribute('aria-selected', 'true');
+      document.querySelector(`[data-panel="${target}"]`)?.classList.add('install__panel--active');
+    });
+  });
+</script>
+
+<style>
+  .install {
+    background: #F0F2F5;
+    padding: 5rem 2rem;
+  }
+  .install__inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .install__heading {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1B3A5C;
+    margin: 0 0 2rem;
+  }
+  .install__tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid #d0d5de;
+    margin-bottom: 1.5rem;
+  }
+  .install__tab {
+    background: none;
+    border: none;
+    padding: 0.6rem 1.25rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #555;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: color 0.15s, border-color 0.15s;
+    font-family: inherit;
+  }
+  .install__tab:hover { color: #1B3A5C; }
+  .install__tab--active {
+    color: #F08220;
+    border-bottom-color: #F08220;
+  }
+  .install__panel { display: none; }
+  .install__panel--active { display: block; }
+  .install__code {
+    background: #1e2235;
+    color: #e0e6f0;
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    overflow-x: auto;
+    margin: 0 0 1rem;
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
+  .install__code code {
+    font-family: 'Fira Code', 'Cascadia Code', monospace;
+    white-space: pre;
+  }
+</style>

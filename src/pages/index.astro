@@ -1,0 +1,49 @@
+---
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import FeaturesGrid from '../components/FeaturesGrid.astro';
+import ScreenshotsGallery from '../components/ScreenshotsGallery.astro';
+import InstallSection from '../components/InstallSection.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenVPN 3 Linux Client — Native GTK4 GUI for OpenVPN 3 Linux</title>
+    <meta
+      name="description"
+      content="A native GTK4 GUI and companion CLI for OpenVPN 3 Linux — full D-Bus integration, profile management, live telemetry, and more."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <style is:global>
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: 'Inter', system-ui, sans-serif;
+        background: #ffffff;
+        color: #222;
+        -webkit-font-smoothing: antialiased;
+      }
+      .hero-wrapper { background: #1B3A5C; }
+    </style>
+    <Nav />
+    <div class="hero-wrapper">
+      <Hero />
+    </div>
+    <FeaturesGrid />
+    <ScreenshotsGallery />
+    <InstallSection />
+    <Footer />
+  </body>
+</html>
