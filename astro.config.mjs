@@ -8,6 +8,11 @@ export default defineConfig({
     preview: {
         host: true,
     },
+    vite: {
+        server: {
+            allowedHosts: ["openvpn.denom.cc"],
+        },
+    },
     integrations: [
         starlight({
             title: "OpenVPN 3 Linux Client",
