@@ -32,7 +32,11 @@ const screenshots = [
 
 <section class="gallery">
   <div class="gallery__inner">
-    <h2 class="gallery__heading">See it in action</h2>
+    <div class="gallery__header">
+      <span class="section-label">Screenshots</span>
+      <h2 class="section-title">See it in action</h2>
+      <p class="section-desc">Real UI — no mockups. Click any screenshot for a full-size view.</p>
+    </div>
     <div class="gallery__grid">
       {screenshots.map((s, i) => (
         <button
@@ -43,9 +47,12 @@ const screenshots = [
           <Image
             src={s.src}
             alt={s.alt}
-            width={240}
-            quality={80}
+            width={480}
+            quality={90}
+            densities={[1, 2]}
+            class="gallery__img"
           />
+          <span class="gallery__caption">{s.alt}</span>
         </button>
       ))}
     </div>
@@ -53,7 +60,11 @@ const screenshots = [
 </section>
 
 <dialog id="gallery-dialog" class="gallery-dialog">
-  <button id="gallery-dialog-close" class="gallery-dialog__close" aria-label="Close">✕</button>
+  <button id="gallery-dialog-close" class="gallery-dialog__close" aria-label="Close">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
   <img id="gallery-dialog-img" src="" alt="" class="gallery-dialog__img" />
 </dialog>
 
@@ -79,79 +90,108 @@ const screenshots = [
 
 <style>
   .gallery {
-    padding: 5rem 2rem;
-    background: #ffffff;
+    padding: 6rem 2rem;
+    border-bottom: 1px solid var(--border);
   }
   .gallery__inner {
     max-width: 1200px;
     margin: 0 auto;
   }
-  .gallery__heading {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #1B3A5C;
-    margin: 0 0 3rem;
+  .gallery__header {
+    margin-bottom: 3rem;
+    max-width: 540px;
   }
   .gallery__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.875rem;
   }
   .gallery__thumb {
-    background: none;
-    border: 2px solid transparent;
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 10px;
     padding: 0;
     cursor: pointer;
     overflow: hidden;
-    transition: border-color 0.2s, transform 0.2s;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
   }
   .gallery__thumb:hover {
-    border-color: #F08220;
-    transform: scale(1.02);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(240, 130, 32, 0.15);
   }
-  .gallery__thumb img {
+  .gallery__img {
     display: block;
     width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: 9px;
   }
+  .gallery__caption {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    padding: 1.5rem 0.75rem 0.625rem;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.9);
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.2s;
+    text-align: left;
+    border-radius: 0 0 9px 9px;
+    pointer-events: none;
+  }
+  .gallery__thumb:hover .gallery__caption {
+    opacity: 1;
+  }
+
+  /* Modal */
   .gallery-dialog {
-    border: none;
-    border-radius: 12px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
     padding: 0;
-    background: rgba(0,0,0,0.92);
+    background: var(--surface);
     max-width: 90vw;
-    max-height: 90vh;
+    max-height: 92vh;
+    overflow: hidden;
   }
   .gallery-dialog::backdrop {
-    background: rgba(0,0,0,0.75);
+    background: rgba(0, 0, 0, 0.82);
+    backdrop-filter: blur(4px);
   }
   .gallery-dialog__img {
     display: block;
     max-width: 85vw;
-    max-height: 85vh;
+    max-height: 88vh;
     object-fit: contain;
-    border-radius: 8px;
+    border-radius: 13px;
   }
   .gallery-dialog__close {
     position: absolute;
     top: 0.75rem;
     right: 0.75rem;
-    background: rgba(255,255,255,0.15);
-    border: none;
-    color: white;
-    font-size: 1.25rem;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: var(--text-2);
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
     cursor: pointer;
-    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s;
   }
-  @media (max-width: 768px) {
-    .gallery__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  .gallery-dialog__close:hover {
+    background: rgba(255,255,255,0.14);
+    color: var(--text);
+  }
+
+  @media (max-width: 900px) {
+    .gallery__grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .gallery { padding: 4rem 1.5rem; }
+    .gallery__grid { grid-template-columns: repeat(2, 1fr); }
   }
 </style>

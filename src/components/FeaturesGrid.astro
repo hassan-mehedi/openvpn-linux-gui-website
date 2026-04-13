@@ -1,42 +1,66 @@
 ---
 const features = [
   {
-    icon: '📁',
+    svg: `<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>`,
+    iconColor: '#818CF8',
+    iconBg: 'rgba(99, 102, 241, 0.1)',
+    iconBorder: 'rgba(99, 102, 241, 0.2)',
     title: 'Profile Management',
-    desc: 'Import from .ovpn file, HTTPS URL, or openvpn:// token URL. Search, rename, and delete profiles.',
+    desc: 'Import from .ovpn file, HTTPS URL, or openvpn:// token URL. Search, rename, and delete profiles with ease.',
   },
   {
-    icon: '🔗',
+    svg: `<path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1.5" fill="currentColor"/>`,
+    iconColor: '#34D399',
+    iconBg: 'rgba(34, 197, 94, 0.09)',
+    iconBorder: 'rgba(34, 197, 94, 0.2)',
     title: 'Connection Lifecycle',
-    desc: 'Connect, disconnect, pause, resume, and restart with a formal state machine. Credential and MFA prompts handled automatically.',
+    desc: 'Connect, pause, resume, restart with a formal state machine. Credentials and MFA prompts handled automatically.',
   },
   {
-    icon: '📊',
+    svg: `<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>`,
+    iconColor: '#C084FC',
+    iconBg: 'rgba(168, 85, 247, 0.1)',
+    iconBorder: 'rgba(168, 85, 247, 0.2)',
     title: 'Live Telemetry',
     desc: 'Real-time bytes transferred, packet counts, latency, and a live throughput rate graph per active session.',
   },
   {
-    icon: '🔍',
+    svg: `<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>`,
+    iconColor: '#FBBF24',
+    iconBg: 'rgba(245, 158, 11, 0.1)',
+    iconBorder: 'rgba(245, 158, 11, 0.2)',
     title: 'Diagnostics',
     desc: 'Service reachability checks, guided recovery workflows, and one-click redacted support bundle export.',
   },
   {
-    icon: '🌐',
+    svg: `<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>`,
+    iconColor: '#22D3EE',
+    iconBg: 'rgba(6, 182, 212, 0.09)',
+    iconBorder: 'rgba(6, 182, 212, 0.2)',
     title: 'Proxy Management',
     desc: 'Save and manage HTTP/SOCKS proxies, assign them per profile, or override at connect time.',
   },
   {
-    icon: '⌨️',
+    svg: `<polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>`,
+    iconColor: '#FB923C',
+    iconBg: 'rgba(240, 130, 32, 0.1)',
+    iconBorder: 'rgba(240, 130, 32, 0.22)',
     title: 'Companion CLI',
     desc: 'Full automation surface for profiles, sessions, settings, proxies, and diagnostics. JSON output supported.',
   },
   {
-    icon: '🖥️',
+    svg: `<rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>`,
+    iconColor: '#60A5FA',
+    iconBg: 'rgba(59, 130, 246, 0.1)',
+    iconBorder: 'rgba(59, 130, 246, 0.2)',
     title: 'Desktop Integration',
     desc: '.ovpn file association, openvpn:// URI handler, StatusNotifier system tray, XDG autostart, and AppStream metadata.',
   },
   {
-    icon: '⚙️',
+    svg: `<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>`,
+    iconColor: '#94A3B8',
+    iconBg: 'rgba(100, 116, 139, 0.1)',
+    iconBorder: 'rgba(100, 116, 139, 0.2)',
     title: 'System Mode',
     desc: 'Optional systemd user service and polkit policy for boot-time, unattended VPN connections.',
   },
@@ -45,11 +69,20 @@ const features = [
 
 <section class="features">
   <div class="features__inner">
-    <h2 class="features__heading">Everything you need</h2>
+    <div class="features__header">
+      <span class="section-label">Capabilities</span>
+      <h2 class="section-title">Everything you need</h2>
+      <p class="section-desc">Built on top of OpenVPN 3 Linux D-Bus services — no wrappers, no workarounds.</p>
+    </div>
     <div class="features__grid">
       {features.map(f => (
         <div class="feature-card">
-          <span class="feature-card__icon" aria-hidden="true">{f.icon}</span>
+          <div
+            class="feature-card__icon"
+            style={`background:${f.iconBg}; border-color:${f.iconBorder}; color:${f.iconColor}`}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={f.svg} />
+          </div>
           <h3 class="feature-card__title">{f.title}</h3>
           <p class="feature-card__desc">{f.desc}</p>
         </div>
@@ -60,51 +93,66 @@ const features = [
 
 <style>
   .features {
-    background: #F0F2F5;
-    padding: 5rem 2rem;
+    padding: 6rem 2rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
   }
   .features__inner {
     max-width: 1200px;
     margin: 0 auto;
   }
-  .features__heading {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #1B3A5C;
-    margin: 0 0 3rem;
+  .features__header {
+    margin-bottom: 3.5rem;
+    max-width: 540px;
   }
   .features__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+    gap: 1px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--border);
   }
   .feature-card {
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 1.75rem;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
-    transition: box-shadow 0.2s, transform 0.2s;
+    background: var(--surface);
+    padding: 1.875rem;
+    transition: background 0.2s;
   }
   .feature-card:hover {
-    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-    transform: translateY(-2px);
+    background: var(--surface-2);
   }
   .feature-card__icon {
-    font-size: 2rem;
-    display: block;
-    margin-bottom: 0.75rem;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.125rem;
+    flex-shrink: 0;
+  }
+  .feature-card__icon svg {
+    width: 18px;
+    height: 18px;
   }
   .feature-card__title {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: #1B3A5C;
+    font-family: var(--font-display);
+    font-size: 0.975rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text);
     margin: 0 0 0.5rem;
   }
   .feature-card__desc {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: #555;
+    font-size: 0.865rem;
+    line-height: 1.65;
+    color: var(--text-2);
     margin: 0;
+  }
+
+  @media (max-width: 640px) {
+    .features { padding: 4rem 1.5rem; }
   }
 </style>

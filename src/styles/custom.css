@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  --sl-font: 'Inter', system-ui, sans-serif;
+  --sl-font: 'DM Sans', system-ui, sans-serif;
+  --sl-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   --sl-color-accent-low: #fce5c5;
   --sl-color-accent: #F08220;
   --sl-color-accent-high: #d06e18;
-  --sl-color-bg-nav: #1B3A5C;
+  --sl-color-bg-nav: #07111E;
   --sl-color-bg-sidebar: #f8f9fb;
 }
 
@@ -13,12 +14,21 @@
   --sl-color-accent-low: #3d2000;
   --sl-color-accent: #F08220;
   --sl-color-accent-high: #fca555;
-  --sl-color-bg-nav: #1B3A5C;
-  --sl-color-bg: #1A1A2E;
-  --sl-color-bg-sidebar: #1f2235;
+  --sl-color-bg-nav: #07111E;
+  --sl-color-bg: #07111E;
+  --sl-color-bg-sidebar: #0C1828;
 }
 
-/* White text in the nav for contrast against navy */
+/* White text in the nav for contrast against dark nav */
 .site-title, .site-title * {
   color: #ffffff !important;
+  font-family: 'Syne', system-ui, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Consistent heading font in docs */
+h1, h2, h3, h4 {
+  font-family: 'Syne', system-ui, sans-serif !important;
+  letter-spacing: -0.02em;
 }

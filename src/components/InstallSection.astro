@@ -33,7 +33,7 @@ const tabs = [
     label: 'From Source',
     steps: [
       {
-        comment: '# Clone and install dev dependencies',
+        comment: '# Clone and set up dev environment',
         cmd: 'git clone https://github.com/hassan-mehedi/openvpn-linux-client-gui.git\ncd openvpn3-client-linux\nuv sync --dev',
       },
     ],
@@ -43,34 +43,69 @@ const tabs = [
 
 <section class="install">
   <div class="install__inner">
-    <h2 class="install__heading">Install</h2>
-    <div class="install__tabs" role="tablist">
-      {tabs.map((tab, i) => (
-        <button
-          role="tab"
-          class={`install__tab ${i === 0 ? 'install__tab--active' : ''}`}
-          data-tab={tab.id}
-          aria-selected={i === 0 ? 'true' : 'false'}
-        >
-          {tab.label}
-        </button>
-      ))}
+    <div class="install__header">
+      <span class="section-label">Quick Start</span>
+      <h2 class="section-title">Install</h2>
+      <p class="section-desc">Get up and running in under a minute on your Linux distribution of choice.</p>
     </div>
-    {tabs.map((tab, i) => (
-      <div
-        class={`install__panel ${i === 0 ? 'install__panel--active' : ''}`}
-        data-panel={tab.id}
-        role="tabpanel"
-      >
-        {tab.steps.map(step => (
-          <pre class="install__code"><code>{step.comment + '\n' + step.cmd}</code></pre>
+
+    <div class="install__card">
+      <div class="install__tabs" role="tablist">
+        {tabs.map((tab, i) => (
+          <button
+            role="tab"
+            class={`install__tab ${i === 0 ? 'install__tab--active' : ''}`}
+            data-tab={tab.id}
+            aria-selected={i === 0 ? 'true' : 'false'}
+          >
+            {tab.label}
+          </button>
         ))}
       </div>
-    ))}
+
+      {tabs.map((tab, i) => (
+        <div
+          class={`install__panel ${i === 0 ? 'install__panel--active' : ''}`}
+          data-panel={tab.id}
+          role="tabpanel"
+        >
+          {tab.steps.map((step, si) => (
+            <div class="install__block">
+              <div class="install__block-bar">
+                <div class="install__block-dots">
+                  <span style="background:#FF5F56"></span>
+                  <span style="background:#FFBD2E"></span>
+                  <span style="background:#27C93F"></span>
+                </div>
+                <span class="install__block-comment">{step.comment}</span>
+                <button
+                  class="install__copy-btn"
+                  data-copy={step.cmd}
+                  aria-label={`Copy: ${step.comment}`}
+                >
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span class="install__copy-label">Copy</span>
+                </button>
+              </div>
+              <pre class="install__code"><span class="install__prompt">$</span><code>{step.cmd}</code></pre>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+
+    <p class="install__docs-link">
+      Need more detail?
+      <a href="/docs/getting-started/installation/">Read the full installation guide →</a>
+    </p>
   </div>
 </section>
 
 <script>
+  // Tab switching
   const tabs = document.querySelectorAll<HTMLButtonElement>('.install__tab');
   const panels = document.querySelectorAll<HTMLElement>('.install__panel');
 
@@ -87,62 +122,184 @@ const tabs = [
       document.querySelector(`[data-panel="${target}"]`)?.classList.add('install__panel--active');
     });
   });
+
+  // Copy buttons for code blocks
+  document.querySelectorAll<HTMLButtonElement>('.install__copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const text = btn.dataset.copy ?? '';
+      navigator.clipboard.writeText(text);
+      const label = btn.querySelector<HTMLElement>('.install__copy-label');
+      btn.classList.add('install__copy-btn--done');
+      if (label) label.textContent = 'Copied!';
+      setTimeout(() => {
+        btn.classList.remove('install__copy-btn--done');
+        if (label) label.textContent = 'Copy';
+      }, 2000);
+    });
+  });
 </script>
 
 <style>
   .install {
-    background: #F0F2F5;
-    padding: 5rem 2rem;
+    padding: 6rem 2rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
   }
   .install__inner {
-    max-width: 760px;
+    max-width: 800px;
     margin: 0 auto;
   }
-  .install__heading {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #1B3A5C;
-    margin: 0 0 2rem;
+  .install__header {
+    margin-bottom: 2.5rem;
   }
+
+  /* Card container */
+  .install__card {
+    background: #040D18;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  /* Tabs */
   .install__tabs {
     display: flex;
-    gap: 0;
-    border-bottom: 2px solid #d0d5de;
-    margin-bottom: 1.5rem;
+    gap: 0.25rem;
+    padding: 0.75rem 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
   }
   .install__tab {
-    background: none;
-    border: none;
-    padding: 0.6rem 1.25rem;
-    font-size: 0.95rem;
+    background: transparent;
+    border: 1px solid transparent;
+    padding: 0.4rem 1rem;
+    font-size: 0.825rem;
     font-weight: 500;
-    color: #555;
+    font-family: var(--font-body);
+    color: var(--text-muted);
     cursor: pointer;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -2px;
-    transition: color 0.15s, border-color 0.15s;
-    font-family: inherit;
+    border-radius: 6px 6px 0 0;
+    transition: color 0.15s, background 0.15s, border-color 0.15s;
+    margin-bottom: -1px;
   }
-  .install__tab:hover { color: #1B3A5C; }
+  .install__tab:hover {
+    color: var(--text-2);
+    background: rgba(255,255,255,0.04);
+  }
   .install__tab--active {
-    color: #F08220;
-    border-bottom-color: #F08220;
+    color: var(--text);
+    background: #040D18;
+    border-color: var(--border);
+    border-bottom-color: #040D18;
   }
-  .install__panel { display: none; }
+
+  /* Panels */
+  .install__panel { display: none; padding: 1.25rem; }
   .install__panel--active { display: block; }
-  .install__code {
-    background: #1e2235;
-    color: #e0e6f0;
+
+  /* Individual code block */
+  .install__block {
+    border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 1.25rem 1.5rem;
+    overflow: hidden;
+    margin-bottom: 0.875rem;
+  }
+  .install__block:last-child { margin-bottom: 0; }
+
+  .install__block-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.5rem 0.875rem;
+    background: rgba(255,255,255,0.03);
+    border-bottom: 1px solid var(--border);
+  }
+  .install__block-dots {
+    display: flex;
+    gap: 5px;
+    flex-shrink: 0;
+  }
+  .install__block-dots span {
+    display: block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+  }
+  .install__block-comment {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    letter-spacing: 0.01em;
+    flex: 1;
+  }
+  .install__copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: var(--text-muted);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.68rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+  }
+  .install__copy-btn:hover {
+    background: rgba(255,255,255,0.09);
+    color: var(--text-2);
+    border-color: rgba(255,255,255,0.14);
+  }
+  .install__copy-btn--done {
+    color: var(--code) !important;
+    border-color: rgba(86, 216, 168, 0.3) !important;
+  }
+
+  .install__code {
+    margin: 0;
+    padding: 1rem 1rem;
     overflow-x: auto;
-    margin: 0 0 1rem;
-    font-size: 0.875rem;
-    line-height: 1.7;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .install__prompt {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 500;
+    flex-shrink: 0;
+    user-select: none;
+    padding-top: 0.05em;
   }
   .install__code code {
-    font-family: 'Fira Code', 'Cascadia Code', monospace;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    line-height: 1.75;
+    color: var(--code);
     white-space: pre;
+  }
+
+  /* Docs link */
+  .install__docs-link {
+    margin: 1.5rem 0 0;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    text-align: center;
+  }
+  .install__docs-link a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .install__docs-link a:hover {
+    color: var(--accent-bright);
+  }
+
+  @media (max-width: 640px) {
+    .install { padding: 4rem 1.5rem; }
   }
 </style>
