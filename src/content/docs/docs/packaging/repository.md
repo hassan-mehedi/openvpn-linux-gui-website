@@ -49,7 +49,7 @@ Tools for generating a signed APT repository: `aptly` or `reprepro`. Host the re
 2. Use the stable tag-based release workflow for versions you want users to upgrade to.
 3. Publish a Fedora COPR project.
 4. Publish a signed APT repository.
-5. Update `install.sh` to add the repository and install from it instead of building from source.
+5. Update `install.sh` to add the repository and install from it instead of downloading GitHub release assets directly.
 
 ## AppStream Integration
 

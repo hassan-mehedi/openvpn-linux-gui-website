@@ -5,7 +5,7 @@ description: System requirements for the OpenVPN 3 Linux Client GUI.
 
 ## System Requirements
 
-- **Python** 3.11 or later
+- **Python** 3.10 or later
 - **[OpenVPN 3 Linux](https://github.com/OpenVPN/openvpn3-linux)** installed and running
 - **GTK4** and **libadwaita**
 - **PyGObject** (`python3-gi`)

@@ -5,11 +5,7 @@ const tabs = [
     label: 'Fedora',
     steps: [
       {
-        comment: '# Install system dependencies',
-        cmd: 'sudo dnf install python3-gobject gtk4 libadwaita python3-dbus libsecret openvpn3-client',
-      },
-      {
-        comment: '# Install the GUI',
+        comment: '# Install the latest stable package',
         cmd: 'curl -fsSL https://raw.githubusercontent.com/hassan-mehedi/openvpn-linux-client-gui/main/install.sh | bash',
       },
     ],
@@ -19,11 +15,7 @@ const tabs = [
     label: 'Ubuntu / Debian',
     steps: [
       {
-        comment: '# Install system dependencies',
-        cmd: 'sudo apt install gir1.2-gtk-4.0 gir1.2-adw-1 gir1.2-secret-1 python3-gi python3-dbus openvpn3',
-      },
-      {
-        comment: '# Install the GUI',
+        comment: '# Install the latest stable package',
         cmd: 'curl -fsSL https://raw.githubusercontent.com/hassan-mehedi/openvpn-linux-client-gui/main/install.sh | bash',
       },
     ],
