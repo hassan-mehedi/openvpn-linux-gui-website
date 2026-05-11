@@ -9,7 +9,7 @@ description: How to install the OpenVPN 3 Linux Client GUI.
 curl -fsSL https://raw.githubusercontent.com/hassan-mehedi/openvpn-linux-client-gui/main/install.sh | bash
 ```
 
-This detects the current distro and version, fetches the latest stable DEB or RPM release from GitHub, bootstraps the OpenVPN 3 repository on Debian-family systems when needed, and installs the package with the native package manager.
+This detects the current distro and version, fetches the latest stable DEB or RPM release from GitHub, prefers distro-native OpenVPN 3 packages on Debian-family systems, falls back to the OpenVPN repository only when needed, and installs the package with the native package manager.
 
 ## DEB Package (Debian / Ubuntu)
 
