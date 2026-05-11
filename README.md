@@ -1,49 +1,39 @@
-# Starlight Starter Kit: Basics
+# OpenVPN 3 Linux Client Website
 
-[![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
+Marketing site and documentation portal for the OpenVPN 3 Linux Client GUI.
 
+The site is built with Astro and Starlight and contains:
+
+- the landing page
+- product screenshots
+- getting-started guides
+- packaging and tray integration notes
+- reference documentation for the desktop client
+
+## Development
+
+Run all commands from the repo root:
+
+| Command | Action |
+| :-- | :-- |
+| `npm install` | Install dependencies |
+| `npm run dev` | Start the local dev server |
+| `npm run build` | Build the production site |
+| `npm run preview` | Preview the built site locally |
+
+## Content Layout
+
+```text
+src/
+  components/      Landing page sections
+  content/docs/    Starlight documentation pages
+  pages/           Astro routes such as the homepage
+  styles/          Shared custom theme overrides
+  assets/          Screenshots and icons
 ```
-npm create astro@latest -- --template starlight
-```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Notes
 
-## 🚀 Project Structure
-
-Inside of your Astro + Starlight project, you'll see the following folders and files:
-
-```
-.
-├── public/
-├── src/
-│   ├── assets/
-│   ├── content/
-│   │   └── docs/
-│   └── content.config.ts
-├── astro.config.mjs
-├── package.json
-└── tsconfig.json
-```
-
-Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
-
-Images can be added to `src/assets/` and embedded in Markdown with a relative link.
-
-Static assets, like favicons, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Check out [Starlight’s docs](https://starlight.astro.build/), read [the Astro documentation](https://docs.astro.build), or jump into the [Astro Discord server](https://astro.build/chat).
+- Update the landing page install commands when the main installer flow changes.
+- Keep Debian and Ubuntu docs aligned with the app package metadata, especially GTK and Cairo bridge requirements.
+- Screenshot content should match the current desktop UI before publishing.

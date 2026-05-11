@@ -8,7 +8,7 @@ description: Building and installing the Debian/Ubuntu package for the OpenVPN 3
 Install system dependencies:
 
 ```bash
-sudo apt install gir1.2-gtk-4.0 gir1.2-adw-1 gir1.2-secret-1 python3-gi python3-dbus openvpn3
+sudo apt install gir1.2-gtk-4.0 gir1.2-adw-1 gir1.2-secret-1 python3-gi python3-gi-cairo python3-dbus openvpn3
 ```
 
 ## Build and Install
@@ -35,6 +35,12 @@ The DEB package installs:
 - App icon
 - `.ovpn` file association (`application/x-openvpn-profile`)
 - `openvpn://` URI handler
+
+## Runtime Notes
+
+The Debian package declares `python3-gi-cairo` because the live throughput
+graph is rendered through `Gtk.DrawingArea` and Cairo. If that bridge is
+missing, the graph will not render correctly.
 
 ## Updates
 

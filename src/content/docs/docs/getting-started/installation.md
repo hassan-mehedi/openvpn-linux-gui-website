@@ -43,5 +43,11 @@ make rpm-uninstall
 ```bash
 git clone https://github.com/hassan-mehedi/openvpn-linux-client-gui.git
 cd openvpn3-client-linux
+uv venv --system-site-packages
 uv sync --dev
+uv run ovpn3-linux-gui
 ```
+
+`--system-site-packages` is recommended for development because GTK and
+PyGObject bindings such as `python3-gi` and `python3-gi-cairo` are typically
+installed by the distro package manager rather than by `uv`.

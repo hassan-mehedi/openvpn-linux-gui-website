@@ -19,6 +19,10 @@ While a session is active, the **Connection Stats** panel shows live metrics upd
 
 The graph plots the send and receive rate over the last 60 seconds. It is rendered directly in the GTK4 window using Cairo and updates in real time.
 
+On Debian and Ubuntu, source or manual setups also need `python3-gi-cairo`.
+Without that bridge, the graph area can stay blank and GTK may report
+`cairo.Context` converter errors.
+
 ## Accessing Stats
 
 Stats are visible in the **Profiles** tab when a connection is active, below the connected profile card. No additional configuration is required.

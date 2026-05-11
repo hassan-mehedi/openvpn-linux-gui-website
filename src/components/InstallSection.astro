@@ -3,31 +3,46 @@ const tabs = [
   {
     id: 'fedora',
     label: 'Fedora',
+    blurb: 'Fastest path for regular users. Installs the latest packaged release with DNF.',
     steps: [
       {
         comment: '# Install the latest stable package',
         cmd: 'curl -fsSL https://raw.githubusercontent.com/hassan-mehedi/openvpn-linux-client-gui/main/install.sh | bash',
       },
+    ],
+    notes: [
+      'Uses the published RPM release asset.',
+      'Keeps desktop launcher, icon, MIME, and URI integration in the native package flow.',
     ],
   },
   {
     id: 'ubuntu',
     label: 'Ubuntu / Debian',
+    blurb: 'Recommended for Debian-family desktops. The installer handles OpenVPN 3 repo bootstrapping when needed.',
     steps: [
       {
         comment: '# Install the latest stable package',
         cmd: 'curl -fsSL https://raw.githubusercontent.com/hassan-mehedi/openvpn-linux-client-gui/main/install.sh | bash',
       },
     ],
+    notes: [
+      'Installs the DEB through APT, so runtime dependencies come from package metadata.',
+      'Includes the Cairo bridge needed for the throughput graph on Debian-family systems.',
+    ],
   },
   {
     id: 'source',
     label: 'From Source',
+    blurb: 'Best for development and UI work. Use system site packages so GTK bindings stay visible to the virtualenv.',
     steps: [
       {
         comment: '# Clone and set up dev environment',
-        cmd: 'git clone https://github.com/hassan-mehedi/openvpn-linux-client-gui.git\ncd openvpn3-client-linux\nuv sync --dev',
+        cmd: 'git clone https://github.com/hassan-mehedi/openvpn-linux-client-gui.git\ncd openvpn3-client-linux\nuv venv --system-site-packages\nuv sync --dev\nuv run ovpn3-linux-gui',
       },
+    ],
+    notes: [
+      'Recommended when working on GTK, tray, and telemetry features locally.',
+      'On Debian and Ubuntu, system packages such as python3-gi and python3-gi-cairo remain the source of GTK bindings.',
     ],
   },
 ];
@@ -61,6 +76,7 @@ const tabs = [
           data-panel={tab.id}
           role="tabpanel"
         >
+          <p class="install__panel-blurb">{tab.blurb}</p>
           {tab.steps.map((step, si) => (
             <div class="install__block">
               <div class="install__block-bar">
@@ -85,6 +101,14 @@ const tabs = [
               <pre class="install__code"><span class="install__prompt">$</span><code>{step.cmd}</code></pre>
             </div>
           ))}
+          <div class="install__notes">
+            {tab.notes.map((note) => (
+              <div class="install__note">
+                <span class="install__note-mark">+</span>
+                <span>{note}</span>
+              </div>
+            ))}
+          </div>
         </div>
       ))}
     </div>
@@ -188,6 +212,12 @@ const tabs = [
   /* Panels */
   .install__panel { display: none; padding: 1.25rem; }
   .install__panel--active { display: block; }
+  .install__panel-blurb {
+    margin: 0 0 1rem;
+    color: var(--text-2);
+    line-height: 1.65;
+    max-width: 60ch;
+  }
 
   /* Individual code block */
   .install__block {
@@ -250,6 +280,29 @@ const tabs = [
     border-color: rgba(86, 216, 168, 0.3) !important;
   }
 
+  .install__notes {
+    margin-top: 1rem;
+    display: grid;
+    gap: 0.625rem;
+  }
+  .install__note {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    padding: 0.75rem 0.875rem;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.025);
+    border-radius: 8px;
+    color: var(--text-2);
+    line-height: 1.55;
+  }
+  .install__note-mark {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
   .install__code {
     margin: 0;
     padding: 1rem 1rem;
@@ -293,5 +346,17 @@ const tabs = [
 
   @media (max-width: 640px) {
     .install { padding: 4rem 1.5rem; }
+  }
+
+  @media (max-width: 640px) {
+    .install__tabs {
+      flex-wrap: wrap;
+    }
+    .install__block-bar {
+      flex-wrap: wrap;
+    }
+    .install__copy-btn {
+      margin-left: auto;
+    }
   }
 </style>

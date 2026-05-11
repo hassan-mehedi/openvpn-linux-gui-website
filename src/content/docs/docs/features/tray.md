@@ -11,6 +11,10 @@ When **Close to system tray** is enabled in **Settings → Presentation**, closi
 
 The app uses the Linux **StatusNotifierItem** protocol. Whether a visible tray icon appears depends on the desktop environment.
 
+Packaged installs expose the branded application icon through the desktop icon
+theme. Source runs may fall back to a generic VPN icon if the branded icon is
+not installed system-wide.
+
 ## Support Matrix
 
 ### Verified
